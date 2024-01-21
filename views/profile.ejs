@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="profile w-full bg-zinc-800 min-h-screen text-white py-1">
+      <nav class="w-full px-10 py-3 flex justify-between">
+        <h3>Pinterest</h3>
+        <div>
+          <a href="/profile">Profile</a>
+          <a href="/feed">Feed</a>
+          <a href="/logout" class="px-3 py-2 bg-red-700 text-white rounded-lg"
+            >Logout</a
+          >
+        </div>
+      </nav>
+      <form
+        action="/fileupload"
+        hidden
+        id="uploadform"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="file" name="image" />
+      </form>
+
+      <div class="profdetails flex flex-col items-center mt-20">
+        <div class="relative">
+          <span
+            id="uploadicon"
+            class="w-10 h-10 absolute bottom-0 right-0 rounded-full flex items-center justify-center bg-zinc-200 cursor-pointer"
+          >
+            <i class="ri-pencil-fill text-zinc-500"></i
+          ></span>
+          <div class="w-32 h-32 bg-zinc-500 rounded-full my-2 overflow-hidden">
+            <img
+              src="/images/uploads/<%= user.profileImage %>"
+              alt="img"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <h1 class="text-3xl font-semibold">Praveen Kumar Mallick</h1>
+        <h3 class="text-md my-2">@username</h3>
+        <a href="/edit" class="px-7 py-3 bg-zinc-700 rounded-full text-xs"
+          >Edit</a
+        >
+        <a
+          href="/add"
+          class="px-10 py-2 rounded-lg bg-red-700 mt-4 font-semibold text-xl"
+        >
+          Add New Post
+        </a>
+      </div>
+      <div class="flex flex-wrap cards gap-10 px-10 mt-10">
+        <div class="card">
+          <div class="w-40 h-52 bg-zinc-400 rounded-lg overflow-hidden">
+            <img
+              src="/images/uploads/<%= user?.posts[0]?.image %>"
+              alt="img"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <a href="/show/posts" class="text-xl font-semibold mt-3 inline-block"
+            >Yours Uploaded Pins</a
+          >
+          <h5 class="text-sm font-medium"><%= user.posts.length %> Pins</h5>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelector("#uploadicon").addEventListener("click", () => {
+        document.querySelector("#uploadform input").click();
+      });
+
+      document
+        .querySelector("#uploadform input")
+        .addEventListener("change", () => {
+          document.querySelector("#uploadform").submit();
+        });
+    </script>
+  </body>
+</html>

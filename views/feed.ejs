@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feeds</title>
+    
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-full min-h-screen bg-zinc-800">
+      <nav class="w-full px-10 py-3 flex justify-between">
+        <h3 class="font-semibold text-3xl text-white">Pinterest</h3>
+        <div class="text-white">
+          <a href="/profile">Profile</a>
+          <a href="/feed">Feed</a>
+          <a href="/logout" class="px-3 py-2 bg-red-700 text-white rounded-lg"
+            >Logout</a
+          >
+        </div>
+      </nav>
+      <div class="cards flex flex-wrap gap-10 p-4 text-white">
+        <% posts.forEach((elem) => { %>
+        <div class="w-32 card">
+          <div class="w-full h-40 bg-sky-200 rounded-lg overflow-hidden">
+            <img
+              src="/images/uploads/<%=elem.image%>"
+              alt=""
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h5 class="mt-2 text-sm">Some Text</h5>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>
