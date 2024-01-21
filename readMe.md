@@ -1,1 +1,3 @@
-/ - login and register screen
+Pinterest Clone
+
+I tried to clone the backend part
